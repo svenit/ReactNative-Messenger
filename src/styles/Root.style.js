@@ -13,6 +13,10 @@ export default StyleSheet.create({
     textSm: {
         fontSize: 12
     },
+    textCenter: {
+        textAlign: 'center',
+        lineHeight: 25
+    },
     input: {
         borderWidth: 1,
         borderColor: '#eee',
