@@ -1,4 +1,6 @@
-const accounts = [
+import * as Type from '../constants/acctionTypes';
+
+let initialState = [
     {
         id: 1,
         username: 'lequangvy',
@@ -28,4 +30,14 @@ const accounts = [
     }
 ];
 
-export default accounts;
+const accountReducer = (state = initialState, { type, payload }) => {
+    switch (type) {
+        case Type.SIGNUP:
+            state = [...state, payload];
+            return state;
+        default:
+            return [...state];
+    }
+};
+
+export default accountReducer;

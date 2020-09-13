@@ -1,15 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { Alert, View, Text, StatusBar, Image, TextInput, TouchableWithoutFeedback } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StatusBar, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import LoginStyle from '../styles/Login.style';
 import RootStyle from '../styles/Root.style';
-import accounts from '../data/accounts';
+import { useSelector, useDispatch } from 'react-redux';
+import Validator from '../utils/Validator';
+import { actionSetAuth } from '../actions/authActions';
 
 const LoginScreen = ({navigation}) => {
-    let [email, setEmail] = useState('');
+    let [username, setUsername] = useState('');
     let [password, setPassword] = useState('');
+    const accounts = useSelector(state => state.account);
+    const dispatch = useDispatch();
     const login = () => {
-        let checkAccount = accounts.filter(account => account.username == email && account.password == password);
+        let validator = Validator;
+        validator.make({username, password}, [
+            {
+                attribute: 'username',
+                text: 'Tên tài khoản',
+                validate: 'required'
+            },
+            {
+                attribute: 'password',
+                text: 'Mật khẩu',
+                validate: 'required'
+            }
+        ]);
+        if (validator.fails()) {
+            return Alert.alert('Thông báo', validator.first().message);
+        }
+        let checkAccount = accounts.filter(account => account.username == username && account.password == password);
         if (checkAccount.length > 0) {
+            dispatch(actionSetAuth(checkAccount[0]));
+            navigation.navigate('Home');
             return;
         }
         Alert.alert('Thông báo', 'Tài khoản hoặc mật khẩu không chính xác');
@@ -28,7 +50,7 @@ const LoginScreen = ({navigation}) => {
                     style={RootStyle.input}
                     placeholder="Nhập tên tài khoản"
                     onChangeText={(text) => {
-                        setEmail(text);
+                        setUsername(text);
                     }}
                     onSubmitEditing={() => login()}
                 />
@@ -41,11 +63,13 @@ const LoginScreen = ({navigation}) => {
                     }}
                     onSubmitEditing={() => login()}
                 />
-                <View style={[RootStyle.buttonPrimary, {marginTop: 20}]}>
-                    <TouchableWithoutFeedback style={RootStyle.buttonPrimary} onPress={() => {login()}}>
-                        <Text style={LoginStyle.loginBtn}>Đăng Nhập</Text>
-                    </TouchableWithoutFeedback>
-                </View>
+                <TouchableOpacity
+                    activeOpacity={.8}
+                    style={[RootStyle.buttonPrimary, {marginTop: 20}]}
+                    onPress={() => {login()}}
+                >
+                    <Text style={LoginStyle.loginBtn}>Đăng Nhập</Text>
+                </TouchableOpacity>
             </View>
             <View style={{marginTop: 10}}>
                 <Text style={RootStyle.textSm}>

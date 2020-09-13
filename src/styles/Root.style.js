@@ -18,19 +18,18 @@ export default StyleSheet.create({
         borderColor: '#eee',
         width: 270,
         height: 50,
-        borderRadius: 5,
+        borderRadius: 25,
         backgroundColor: '#f2f2f2',
         padding: 10,
         margin: 6,
     },
     buttonPrimary: {
         backgroundColor: 'rgb(83, 146, 252)',
-        padding: 10,
         margin: 6,
         width: 270,
         height: 50,
         color: '#fff',
-        borderRadius: 5,
+        borderRadius: 25,
         justifyContent: 'center',
     }
 });
