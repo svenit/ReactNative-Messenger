@@ -15,7 +15,7 @@ const IntroScreen = () => {
                 <Text>CC</Text>
             </View>
             <View style={IntroStyle.page}>
-                <Text>CC2</Text>
+                <Text>CC23</Text>
             </View>
         </ScrollView>
     )
