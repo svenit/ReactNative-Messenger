@@ -52,7 +52,6 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={(text) => {
                         setUsername(text);
                     }}
-                    onSubmitEditing={() => login()}
                 />
                 <TextInput
                     style={RootStyle.input}
@@ -61,7 +60,6 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={(text) => {
                         setPassword(text);
                     }}
-                    onSubmitEditing={() => login()}
                 />
                 <TouchableOpacity
                     activeOpacity={.8}

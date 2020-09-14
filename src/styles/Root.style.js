@@ -4,6 +4,10 @@ import { StyleSheet, Dimensions } from 'react-native';
 const screen = Dimensions.get('screen');
 
 export default StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
     textMuted: {
         color: '#222'
     },

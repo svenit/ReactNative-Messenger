@@ -84,7 +84,6 @@ const SignupScreen = ({navigation}) => {
                     onChangeText={(text) => {
                         setUsername(text);
                     }}
-                    onSubmitEditing={() => signup()}
                 />
                 <TextInput
                     style={RootStyle.input}
@@ -92,7 +91,6 @@ const SignupScreen = ({navigation}) => {
                     onChangeText={(text) => {
                         setFullName(text);
                     }}
-                    onSubmitEditing={() => login()}
                 />
                 <TextInput
                     style={RootStyle.input}
@@ -101,7 +99,6 @@ const SignupScreen = ({navigation}) => {
                     onChangeText={(text) => {
                         setPassword(text);
                     }}
-                    onSubmitEditing={() => signup()}
                 />
                 <TextInput
                     style={RootStyle.input}
@@ -110,7 +107,6 @@ const SignupScreen = ({navigation}) => {
                     onChangeText={(text) => {
                         setConfirmPassword(text);
                     }}
-                    onSubmitEditing={() => signup()}
                 />
                 <TouchableOpacity
                     activeOpacity={.8}
