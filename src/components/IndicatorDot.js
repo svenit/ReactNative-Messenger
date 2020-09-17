@@ -51,8 +51,6 @@ const style = StyleSheet.create({
     },
     activeDot: {
         backgroundColor: 'rgb(114, 169, 252)',
-        width: 10,
-        height: 10,
     }
 });
 

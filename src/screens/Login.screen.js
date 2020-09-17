@@ -32,7 +32,7 @@ const LoginScreen = ({navigation}) => {
         let checkAccount = accounts.filter(account => account.username == username && account.password == password);
         if (checkAccount.length > 0) {
             dispatch(actionSetAuth(checkAccount[0]));
-            navigation.navigate('Home');
+            navigation.navigate('App');
             return;
         }
         Alert.alert('Thông báo', 'Tài khoản hoặc mật khẩu không chính xác');

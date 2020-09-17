@@ -6,7 +6,7 @@ const Home = ({props}) => {
     const auth = useSelector(state => state.auth);
     return (
         <View>
-
+            <Text></Text>
         </View>
     )
 }
