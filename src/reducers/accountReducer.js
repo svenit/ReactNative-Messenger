@@ -27,7 +27,7 @@ let initialState = [
         avatar: null,
         isOnline: true,
         friends: [1]
-    }
+    },
 ];
 
 const accountReducer = (state = initialState, { type, payload }) => {

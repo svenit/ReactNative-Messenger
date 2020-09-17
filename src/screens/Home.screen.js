@@ -3,11 +3,10 @@ import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 const Home = ({props}) => {
-    const auth = useSelector(state => state);
-    console.log(auth);
+    const auth = useSelector(state => state.auth);
     return (
         <View>
-            <Text>Hello</Text>
+
         </View>
     )
 }

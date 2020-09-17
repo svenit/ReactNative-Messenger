@@ -5,6 +5,7 @@ import RootStyle from '../styles/Root.style';
 import { useSelector, useDispatch } from 'react-redux';
 import Validator from '../utils/Validator';
 import { actionSetAuth } from '../actions/authActions';
+import ButtonComponet from '../components/Button';
 
 const LoginScreen = ({navigation}) => {
     let [username, setUsername] = useState('');
@@ -61,13 +62,12 @@ const LoginScreen = ({navigation}) => {
                         setPassword(text);
                     }}
                 />
-                <TouchableOpacity
-                    activeOpacity={.8}
-                    style={[RootStyle.buttonPrimary, {marginTop: 20}]}
-                    onPress={() => {login()}}
-                >
-                    <Text style={LoginStyle.loginBtn}>Đăng Nhập</Text>
-                </TouchableOpacity>
+                <ButtonComponet
+                    customeStyle={{marginTop: 20}}
+                    type="primary"
+                    onPress={() => login()}
+                    title="Đăng Nhập"
+                />
             </View>
             <View style={{marginTop: 10}}>
                 <Text style={RootStyle.textSm}>

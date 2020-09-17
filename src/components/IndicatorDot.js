@@ -43,14 +43,16 @@ const style = StyleSheet.create({
         flexDirection: 'row'
     },
     dot: {
-        width: 10,
-        height: 10,
+        width: 8,
+        height: 8,
         backgroundColor: '#eee',
         margin: 10,
         borderRadius: 50
     },
     activeDot: {
         backgroundColor: 'rgb(114, 169, 252)',
+        width: 10,
+        height: 10,
     }
 });
 

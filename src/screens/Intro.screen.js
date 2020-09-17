@@ -3,9 +3,9 @@ import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'rea
 
 import IntroStyle from '../styles/Intro.style';
 import RootStyle from '../styles/Root.style';
-import LoginStyle from '../styles/Login.style';
 import IndicatorDot from '../components/IndicatorDot';
 import Icon from 'react-native-vector-icons/Feather';
+import ButtonComponent from '../components/Button';
 
 
 const IntroScreen = ({navigation}) => {
@@ -93,15 +93,14 @@ const PageScreen = ({src, title, subTitle, children}) => {
 
 const StartButtonComponent = ({navigation}) => {
     return (
-        <TouchableOpacity
-            activeOpacity={.8}
-            style={[RootStyle.buttonPrimary, {marginTop: 20}]}
+        <ButtonComponent
+            customeStyle={{marginTop: 20}}
+            type="primary"
             onPress={() => {
                 navigation.navigate('Login');
             }}
-        >
-            <Text style={LoginStyle.loginBtn}>Bắt Đầu</Text>
-        </TouchableOpacity>
+            title="Bắt Đầu"
+        />
     )
 }
 
