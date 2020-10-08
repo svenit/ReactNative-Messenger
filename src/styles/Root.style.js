@@ -39,5 +39,34 @@ export default StyleSheet.create({
         color: '#fff',
         borderRadius: 25,
         justifyContent: 'center',
+    },
+    fullWidth: {
+        width: screen.width
+    },
+    avatar: {
+        marginRight: 10,
+    },
+    normalAvatar: {
+        width: 46,
+        height: 46,
+        borderRadius: 25
+    },
+    avatarDot: {
+        width: 10,
+        height: 10,
+        position: 'absolute',
+        right: 10,
+        bottom: 0,
+        borderRadius: 25,
+    },
+    circleRadius: {
+        borderRadius: 25
+    },
+    backIcon: {
+        marginBottom: 10,
+        marginLeft: 20
+    },
+    flexColumn: {
+        flexDirection: 'column',
     }
 });

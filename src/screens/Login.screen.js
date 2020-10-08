@@ -6,13 +6,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import Validator from '../utils/Validator';
 import { actionSetAuth } from '../actions/authActions';
 import ButtonComponet from '../components/Button';
+import FirebaseService from '../plugins/firebaseService';
 
 const LoginScreen = ({navigation}) => {
     let [username, setUsername] = useState('');
     let [password, setPassword] = useState('');
     const accounts = useSelector(state => state.account);
     const dispatch = useDispatch();
-    const login = () => {
+    const login = async () => {
         let validator = Validator;
         validator.make({username, password}, [
             {

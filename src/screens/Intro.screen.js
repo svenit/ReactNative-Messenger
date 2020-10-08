@@ -7,7 +7,6 @@ import IndicatorDot from '../components/IndicatorDot';
 import Icon from 'react-native-vector-icons/Feather';
 import ButtonComponent from '../components/Button';
 
-
 const IntroScreen = ({navigation}) => {
     const introPages = [
         {
