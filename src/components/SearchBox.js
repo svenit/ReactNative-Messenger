@@ -18,7 +18,7 @@ const SearchBox = () => {
 const style = StyleSheet.create({
     header: {
         padding: 15,
-        marginTop: 25,
+        marginTop: 0,
         position: 'relative',
     },
     headerIcon: {

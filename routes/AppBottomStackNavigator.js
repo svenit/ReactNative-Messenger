@@ -33,6 +33,7 @@ const AppBottomStackNavigator = () => {
     const renderComponent = () => {
         return tabScreens.map((screen, key) => (
             <Tab.Screen
+                key={key}
                 name={screen.name}
                 component={screen.component}
                 options={{
@@ -52,7 +53,7 @@ const AppBottomStackNavigator = () => {
     }
     return (
         <Tab.Navigator tabBarOptions={{
-                showLabel: false,
+                showLabel: true,
                 showIcon: true,
                 activeTintColor: 'rgb(83, 146, 252)',
                 keyboardHidesTabBar: true,

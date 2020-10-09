@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView, FlatList, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import RootStyle from '../styles/Root.style';
 import FriendsStyle from '../styles/Friends.style';
@@ -27,7 +27,7 @@ const Friends = ({navigation}) => {
         )
     }
     return (
-        <View style={RootStyle.container}>
+        <SafeAreaView style={RootStyle.container}>
             <SearchBox />
             <ScrollView>
                 <FlatList
@@ -36,7 +36,7 @@ const Friends = ({navigation}) => {
                     keyExtractor={item => item.id}
                 />
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }
 

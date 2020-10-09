@@ -8,7 +8,7 @@ export default StyleSheet.create({
         paddingLeft: 0,
         flexDirection: 'row',
         alignItems: 'center',
-        width: screen.width - 150
+        width: screen.width - 150,
     },
     avatarDot: {
         bottom: -4,
@@ -27,5 +27,14 @@ export default StyleSheet.create({
     },
     headerIcon: {
         marginRight: 10,
+    },
+    chatInput: {
+        height: '90%',
+        borderColor: '#f7f8f9',
+        borderWidth: 1,
+        padding: 10,
+        backgroundColor: '#f7f7f7',
+        borderRadius: 25,
+        paddingRight: 40
     }
 });

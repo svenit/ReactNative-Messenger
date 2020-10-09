@@ -29,6 +29,7 @@ export default  {
     update(data) {
         return this.database.ref(this.currentNode).update(data);
     },
+    
     delete() {
         return this.database.ref(this.currentNode).remove();
     },
