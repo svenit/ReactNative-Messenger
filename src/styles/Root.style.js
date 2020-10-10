@@ -47,15 +47,20 @@ export default StyleSheet.create({
         marginRight: 10,
     },
     normalAvatar: {
-        width: 46,
-        height: 46,
+        width: 52,
+        height: 52,
+        borderRadius: 52
+    },
+    smallAvatar: {
+        width: 36,
+        height: 36,
         borderRadius: 25
     },
     avatarDot: {
         width: 10,
         height: 10,
         position: 'absolute',
-        right: 10,
+        right: 15,
         bottom: 0,
         borderRadius: 25,
     },
@@ -68,5 +73,14 @@ export default StyleSheet.create({
     },
     flexColumn: {
         flexDirection: 'column',
+    },
+    borderIcon: {
+        backgroundColor: '#f2f2f2',
+        borderRadius: 25,
+        width: 35,
+        height: 35,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 5
     }
 });

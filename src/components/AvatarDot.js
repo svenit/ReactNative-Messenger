@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import RootStyle from '../styles/Root.style';
 
-const AvatarDot = ({image, status, size = 'medium', imageOptions, dotOptions}) => {
+const AvatarDot = ({image, status, size = 'medium', hasStories, imageOptions, dotOptions}) => {
     const statusMapping = {
         active: 'rgb(66, 183, 42)',
         deactive: '#ccc'
@@ -16,12 +16,16 @@ const AvatarDot = ({image, status, size = 'medium', imageOptions, dotOptions}) =
         },
         medium: RootStyle.normalAvatar,
         large: {
-
+            height: 56,
+            width: 56,
+            position: 'relative',
+            top: 5,
+            borderRadius: 56
         }
     }
     return (
         <View style={{position: 'relative'}}>
-            <Image style={[RootStyle.avatar, RootStyle.circleRadius, imageOptions, sizeMapping[size]]} source={image} />
+            <Image style={[RootStyle.avatar, RootStyle.circleRadius, imageOptions, sizeMapping[size], hasStories ? {borderColor: 'rgb(0, 153, 255)', borderWidth: 3} : {}]} source={image} />
             <View
                 style={[
                     RootStyle.avatarDot,

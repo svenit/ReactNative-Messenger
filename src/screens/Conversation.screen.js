@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, FlatList, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, FlatList, ActivityIndicator, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import AvatarDot from '../components/AvatarDot';
 import ConversationStyle from '../styles/Conversation.style';
 import RootStyle from '../styles/Root.style';
@@ -10,7 +10,7 @@ import MessengerHelper from '../utils/Messenger';
 import FirebaseService from '../plugins/firebaseService';
 import * as firebaseNodes from '../constants/firebaseNodes';
 import MessageBubble from '../components/MessageBubble';
-import { useFocusEffect } from '@react-navigation/native';
+import Validator from '../utils/Validator';
 
 const Conversation = ({route, navigation}) => {
     const user = { id, fullName, avatar, isOnline } = route.params;
@@ -78,6 +78,17 @@ const Conversation = ({route, navigation}) => {
         return <MessageBubble {...item} />
     }
     sendMessage = () => {
+        let validator = Validator;
+        validator.make({messageText}, [
+            {
+                attribute: 'messageText',
+                text: 'Tin nhắn',
+                validate: 'required'
+            },
+        ]);
+        if (validator.fails()) {
+            return;
+        }
         let time = new Date().getTime();
         FirebaseService.node(`${firebaseNodes.CONVERSATIONS}/${conversation.coversation_id}`).ref().push({
             sender_id: auth.id,
@@ -108,7 +119,7 @@ const Conversation = ({route, navigation}) => {
         )
     }
     return (
-        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={{flex: 1}}>
+        <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'height'} style={{flex: 1}}>
             <SafeAreaView style={RootStyle.container}>
                 <View style={{flex: 1, background: 'red'}}>
                     <View style={{flex: 9.3}}>
@@ -136,7 +147,7 @@ const Conversation = ({route, navigation}) => {
 const HeaderTitle = ({avatar, fullName, isOnline}) => {
     return (
         <SafeAreaView style={ConversationStyle.headerUserAvatar}>
-            <AvatarDot dotOptions={ConversationStyle.avatarDot} image={avatar} size="small" status="active"/>
+            <AvatarDot dotOptions={ConversationStyle.avatarDot} image={avatar} size="small" status={isOnline ? 'active' : 'deactive'}/>
             <View style={RootStyle.flexColumn}>
                 <Text style={ConversationStyle.userFullName}>{fullName}</Text>
                 <Text style={ConversationStyle.userStatus}>{isOnline ? 'Đang hoạt động' : 'Offline'}</Text>
@@ -148,7 +159,6 @@ const HeaderTitle = ({avatar, fullName, isOnline}) => {
 const HeaderRight = ({themeColor}) => {
     return (
         <SafeAreaView style={ConversationStyle.headerIconGroup}>
-            <Icon style={ConversationStyle.headerIcon} name="ios-flash" size={28} color={themeColor}/>
             <Icon style={ConversationStyle.headerIcon} name="ios-videocam" size={28} color={themeColor}/>
             <Icon style={ConversationStyle.headerIcon} name="information-circle-sharp" size={28} color={themeColor}/>
         </SafeAreaView>

@@ -6,6 +6,7 @@ export default [
         fullName: 'Lê Quang Vỹ',
         avatar: require('../assets/images/avatar/1.jpeg'),
         isOnline: true,
+        hasStories: true,
     },
     {
         id: 2,
@@ -14,6 +15,7 @@ export default [
         fullName: 'Lê Thị Phương',
         avatar: require('../assets/images/avatar/2.jpeg'),
         isOnline: true,
+        hasStories: true,
     },
     {
         id: 3,
@@ -22,6 +24,7 @@ export default [
         fullName: 'Nguyễn Thanh Trà',
         avatar: require('../assets/images/avatar/3.jpeg'),
         isOnline: true,
+        hasStories: false,
     },
     {
         id: 4,
@@ -30,6 +33,7 @@ export default [
         fullName: 'Tester',
         avatar: require('../assets/images/avatar/4.jpeg'),
         isOnline: true,
+        hasStories: true,
     },
     {
         id: 5,
@@ -37,7 +41,8 @@ export default [
         password: '2',
         fullName: 'Athena',
         avatar: require('../assets/images/avatar/5.jpeg'),
-        isOnline: true,
+        isOnline: false,
+        hasStories: false,
     },
     {
         id: 6,
@@ -46,6 +51,7 @@ export default [
         fullName: 'John Doe',
         avatar: require('../assets/images/avatar/6.jpeg'),
         isOnline: true,
+        hasStories: false,
     },
     {
         id: 7,
@@ -54,6 +60,7 @@ export default [
         fullName: 'Peter',
         avatar: require('../assets/images/avatar/7.jpeg'),
         isOnline: true,
+        hasStories: false,
     },
     {
         id: 8,
@@ -62,6 +69,7 @@ export default [
         fullName: 'Senna',
         avatar: require('../assets/images/avatar/8.jpeg'),
         isOnline: true,
+        hasStories: true,
     },
     {
         id: 9,
@@ -70,6 +78,7 @@ export default [
         fullName: 'Lenona',
         avatar: require('../assets/images/avatar/9.jpeg'),
         isOnline: true,
+        hasStories: false,
     },
     {
         id: 10,
@@ -78,5 +87,6 @@ export default [
         fullName: 'Lina',
         avatar: require('../assets/images/avatar/10.jpeg'),
         isOnline: true,
+        hasStories: false,
     },
 ];

@@ -6,7 +6,8 @@ import LoginScreen from '../src/screens/Login.screen';
 import SignupScreen from '../src/screens/Signup.screen';
 import AppBottomStackNavigator from './AppBottomStackNavigator';
 import ConversationScreen from '../src/screens/Conversation.screen';
-
+import SearchScreen from '../src/screens/Search.screen';
+import ProfileScreen from '../src/screens/Profile.screen';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,23 @@ const AppStackNavigator = () => {
             headerBackTitleVisible: false,
           }}
           component={ConversationScreen}
+        />
+        <Stack.Screen
+          name="Search"
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: false,
+            headerTitle: 'Tin nhắn mới'
+          }}
+          component={SearchScreen}
+        />
+        <Stack.Screen
+          name="Profile"
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: false,
+          }}
+          component={ProfileScreen}
         />
     </Stack.Navigator>
   );

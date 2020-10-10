@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ChatStackNavigator from './ChatStackNavigator';
-import FriendsScreen from '../src/screens/Friends.screen';
+import FriendsStackNavigator from './FriendStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,15 +19,9 @@ const AppBottomStackNavigator = () => {
         },
         {
             name: 'Friend',
-            component: FriendsScreen,
+            component: FriendsStackNavigator,
             tabBarLabel: 'Danh Bạ',
             iconName: 'friend',
-        },
-        {
-            name: 'Setting',
-            component: FriendsScreen,
-            tabBarLabel: 'Cài Đặt',
-            iconName: 'setting',
         },
     ];
     const renderComponent = () => {
@@ -44,7 +38,7 @@ const AppBottomStackNavigator = () => {
                             color={color}
                             focused={focused}
                             name={screen.iconName}
-                            size={25}
+                            size={23}
                         />
                     ),
                 }}
@@ -55,7 +49,8 @@ const AppBottomStackNavigator = () => {
         <Tab.Navigator tabBarOptions={{
                 showLabel: true,
                 showIcon: true,
-                activeTintColor: 'rgb(83, 146, 252)',
+                activeTintColor: '#000',
+                inactiveTintColor: '#ccc',
                 keyboardHidesTabBar: true,
             }}>
             {renderComponent()}
@@ -67,11 +62,11 @@ const BottomIcon = ({color, size, focused, name}) => {
     const iconMapping = {
         chat: {
             active: 'ios-chatbubble-sharp',
-            inactive: 'chatbubble-outline'
+            inactive: 'ios-chatbubble-sharp'
         },
         friend: {
-            active: 'person',
-            inactive: 'person-outline'
+            active: 'ios-person',
+            inactive: 'ios-person'
         },
         setting: {
             active: 'settings-sharp',
@@ -83,7 +78,7 @@ const BottomIcon = ({color, size, focused, name}) => {
         <Icon
             color={color}
             name={focused ? active : inactive}
-            size={20}
+            size={size}
         />
     )
 }

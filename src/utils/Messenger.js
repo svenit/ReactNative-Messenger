@@ -15,6 +15,7 @@ const Messenger = {
                     if (!otherSnapshot.exists()) {
                         let date = new Date().getTime();
                         let conversation = {
+                            is_show: true,
                             last_message: '',
                             coversation_id: this.randomString(),
                             users: [senderId, otherId],
