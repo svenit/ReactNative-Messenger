@@ -6,7 +6,7 @@ import BackIcon from '../components/BackIcon';
 const SearchScreen = ({navigation}) => {
     navigation.setOptions({
         headerTitle: 'Tin nhắn mới',
-        headerBackImage: () => <BackIcon marginTop={5} size={30} name="ios-arrow-back-outline"/>,
+        headerBackImage: () => <BackIcon color="#000" marginTop={5} size={30} name="ios-arrow-back-outline"/>,
     });
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>

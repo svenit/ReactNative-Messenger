@@ -21,7 +21,7 @@ const Friends = ({navigation, showHeader = true}) => {
     }, []);
     showHeader ? navigation.setOptions({
         headerRight: () => <HeaderRight {...navigation} themeColor={themeColor} />,
-        headerLeft: () => <HeaderLeft {...auth} />,
+        headerLeft: () => <HeaderLeft navigation={navigation} {...auth} />,
     }) : null;
     const redirectToConversation = (user) => {
         MessengerHelper.redirectToConversation(navigation, user);
@@ -47,12 +47,12 @@ const Friends = ({navigation, showHeader = true}) => {
 }
 
 
-const HeaderLeft = ({avatar}) => {
+const HeaderLeft = ({avatar, navigation}) => {
     return (
-        <SafeAreaView style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
             <Image source={avatar} style={[RootStyle.smallAvatar, RootStyle.avatar, ChatStyle.headerUserAvatar]} />
             <Text style={ChatStyle.headerChatText}>Danh Bạ</Text>
-        </SafeAreaView>
+        </TouchableOpacity>
     )
 }
 

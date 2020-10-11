@@ -56,6 +56,11 @@ export default StyleSheet.create({
         height: 36,
         borderRadius: 25
     },
+    largeAvatar: {
+        width: 82,
+        height: 82,
+        borderRadius: 62
+    },
     avatarDot: {
         width: 10,
         height: 10,
@@ -82,5 +87,8 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 5
+    },
+    fontNormalBold: {
+        fontWeight: '500'
     }
 });

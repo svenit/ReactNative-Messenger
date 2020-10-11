@@ -26,7 +26,7 @@ const Conversation = ({route, navigation}) => {
     const themeColor = conversation ? conversation.theme_color : 'rgb(0, 153, 255)';
     navigation.setOptions({
         headerTitle: <HeaderTitle {...user} />,
-        headerRight: () => <HeaderRight themeColor={themeColor} />,
+        headerRight: () => <HeaderRight conversation={conversation} user={user} navigation={navigation} themeColor={themeColor} />,
         headerBackImage: () => <BackIcon size={30} color={themeColor} name="ios-arrow-back-outline"/>,
         headerTitleStyle: {
             padding: 10,
@@ -134,7 +134,7 @@ const Conversation = ({route, navigation}) => {
                         </View>
                         <View style={{flex: .8, position: 'relative'}}>
                             <TextInput ref={messageInput} onSubmitEditing={() => sendMessage()} onChangeText={(text) => setMessageText(text)} onFocus={() => setShowSendButton(true)} onBlur={() => setShowSendButton(false)} placeholder="Nhập tin nhắn..." style={ConversationStyle.chatInput} />
-                            <Icon style={{position: 'absolute', right: 10, top: '15%'}} name="sad-sharp" color={themeColor} size={25}/>
+                            <Icon style={{position: 'absolute', right: 10, top: '15%'}} name="ios-happy" color={themeColor} size={25}/>
                         </View>
                         {renderSendButton()}
                     </View>
@@ -156,11 +156,13 @@ const HeaderTitle = ({avatar, fullName, isOnline}) => {
     )
 }
 
-const HeaderRight = ({themeColor}) => {
+const HeaderRight = ({themeColor, navigation, user, conversation}) => {
     return (
         <SafeAreaView style={ConversationStyle.headerIconGroup}>
             <Icon style={ConversationStyle.headerIcon} name="ios-videocam" size={28} color={themeColor}/>
-            <Icon style={ConversationStyle.headerIcon} name="information-circle-sharp" size={28} color={themeColor}/>
+            <TouchableOpacity onPress={() => navigation.navigate('ConversationInfor', {user, conversation})}>
+                <Icon style={ConversationStyle.headerIcon} name="information-circle-sharp" size={28} color={themeColor}/>
+            </TouchableOpacity>
         </SafeAreaView>
     )
 }

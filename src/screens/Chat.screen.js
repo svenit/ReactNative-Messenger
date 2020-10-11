@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, SafeAreaView, FlatList, Text, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, SafeAreaView, FlatList, Text, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { useSelector } from 'react-redux';
 import FirebaseService from '../plugins/firebaseService';
 import * as firebaseNodes from '../constants/firebaseNodes';
@@ -18,12 +18,14 @@ const themeColor =  'rgb(0, 153, 255)';
 
 const ChatScreen = ({navigation}) => {
     const [conversations, setConversations] = useState([]);
-    const [searchText, setSearchText] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const [loading, setLoading] = useState(true);
     const auth = useSelector(state => state.auth);
     useEffect(() => {
         FirebaseService.node(`${firebaseNodes.USERS}/${auth.id}/conversations`).ref().on('value', snapshot => {
             let data = snapshot.val() ? Object.values(snapshot.val()) : [];
             data = data.sort((a, b) => b.updated_at - a.updated_at);
+            setLoading(false);
             setConversations(data);
         });
     }, [])
@@ -56,16 +58,16 @@ const ChatScreen = ({navigation}) => {
     return (
         <SafeAreaView style={RootStyle.container}>
             <SearchBox />
-            <View>
+            <View style={{flex: 1}}>
                 <Stories navigation={navigation} />
-                <FlatList
+                {loading ? <ActivityIndicator size="large" style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} /> : <FlatList
                     style={{
                         marginTop: 20,
                     }}
                     data={conversations}
                     renderItem={renderConversations}
                     keyExtractor={item => item.coversation_id}
-                />
+                />}
             </View>
         </SafeAreaView>
     )

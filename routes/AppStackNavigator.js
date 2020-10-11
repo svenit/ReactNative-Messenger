@@ -6,6 +6,7 @@ import LoginScreen from '../src/screens/Login.screen';
 import SignupScreen from '../src/screens/Signup.screen';
 import AppBottomStackNavigator from './AppBottomStackNavigator';
 import ConversationScreen from '../src/screens/Conversation.screen';
+import ConversationInforScreen from '../src/screens/ConversationInfor.screen';
 import SearchScreen from '../src/screens/Search.screen';
 import ProfileScreen from '../src/screens/Profile.screen';
 
@@ -49,6 +50,14 @@ const AppStackNavigator = () => {
             headerBackTitleVisible: false,
           }}
           component={ConversationScreen}
+        />
+        <Stack.Screen
+          name="ConversationInfor"
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: false,
+          }}
+          component={ConversationInforScreen}
         />
         <Stack.Screen
           name="Search"
