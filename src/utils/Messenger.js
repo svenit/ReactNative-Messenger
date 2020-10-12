@@ -3,7 +3,6 @@ import * as firebaseNodes from '../constants/firebaseNodes';
 
 const Messenger = {
     redirectToConversation(navigation, data) {
-        console.log(data);
         navigation.navigate('Conversation', data);
     },
     async createUserChatBetween(senderId, otherId) {
@@ -51,7 +50,8 @@ const Messenger = {
     },
     deleteConversation(conversationId, senderId, otherId) {
         this.updateUserConversation(senderId, otherId, {
-            is_show: false
+            is_show: false,
+            last_message: "",
         }, true);
         FirebaseService.node(`${firebaseNodes.CONVERSATIONS}/${conversationId}`).ref().once('value', snapshot => {
             snapshot.forEach(function(child) {

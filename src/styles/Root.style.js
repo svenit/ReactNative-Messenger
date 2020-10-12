@@ -86,7 +86,7 @@ export default StyleSheet.create({
         height: 35,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 5
+        marginRight: 5,
     },
     fontNormalBold: {
         fontWeight: '500'
