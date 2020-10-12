@@ -25,7 +25,7 @@ const AvatarDot = ({image, status, size = 'medium', hasStories, imageOptions, do
     }
     return (
         <View style={{position: 'relative'}}>
-            <Image style={[RootStyle.avatar, RootStyle.circleRadius, imageOptions, sizeMapping[size], hasStories ? {borderColor: 'rgb(0, 153, 255)', borderWidth: 3} : {}]} source={image} />
+            <Image style={[RootStyle.avatar, RootStyle.circleRadius, imageOptions, sizeMapping[size], hasStories ? {borderColor: 'rgb(0, 132, 255)', borderWidth: 3} : {}]} source={image} />
             <View
                 style={[
                     RootStyle.avatarDot,

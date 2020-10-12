@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import RootStyle from '../styles/Root.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Badge from '../components/Badge';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ProfileScreen = ({navigation}) => {
     const auth = useSelector(state => state.auth);
@@ -19,7 +20,7 @@ const ProfileScreen = ({navigation}) => {
             title: '',
             items: [
                 {
-                    title: 'Dark Mode',
+                    title: <Text style={RootStyle.fontNormalBold}>Dark Mode</Text>,
                     iconName: 'ios-moon',
                     iconBackground: '#000',
                     iconColor: '#fff',
@@ -33,9 +34,9 @@ const ProfileScreen = ({navigation}) => {
                     />
                 },
                 {
-                    title: 'Tin nhắn chờ',
+                    title: <Text style={RootStyle.fontNormalBold}>Tin nhắn chờ</Text>,
                     iconName: 'ios-chatbubble-ellipses',
-                    iconBackground: 'rgb(0, 153, 255)',
+                    iconBackground: 'rgb(0, 132, 255)',
                     iconColor: '#fff',
                     rightComponent: <Badge size={20} style={{marginTop: 5, marginRight: 10}} backgroundColor="red" color="#fff" text="8" />
                 },
@@ -45,7 +46,7 @@ const ProfileScreen = ({navigation}) => {
             title: 'Cá nhân',
             items: [
                 {
-                    title: 'Trạng thái hoạt động',
+                    title: <Text style={RootStyle.fontNormalBold}>Trạng thái hoạt động</Text>,
                     iconName: 'ios-flash',
                     iconBackground: 'rgb(108, 235, 125)',
                     iconColor: '#fff',
@@ -59,7 +60,7 @@ const ProfileScreen = ({navigation}) => {
                     />
                 },
                 {
-                    title: 'Tên người dùng',
+                    title: <Text style={RootStyle.fontNormalBold}>Tên người dùng</Text>,
                     iconName: 'ios-at-sharp',
                     iconBackground: '#fa4848',
                     iconColor: '#fff',
@@ -71,35 +72,35 @@ const ProfileScreen = ({navigation}) => {
             title: 'Tùy chọn',
             items: [
                 {
-                    title: 'Quyền riêng tư',
+                    title: <Text style={RootStyle.fontNormalBold}>Quyền riêng tư</Text>,
                     iconName: 'ios-shield',
                     iconBackground: '#2cb7de',
                     iconColor: '#fff',
                     rightComponent: null
                 },
                 {
-                    title: 'Thông báo',
+                    title: <Text style={RootStyle.fontNormalBold}>Thông báo</Text>,
                     iconName: 'ios-notifications',
                     iconBackground: '#9345ed',
                     iconColor: '#fff',
                     rightComponent: null
                 },
                 {
-                    title: 'Tin',
+                    title: <Text style={RootStyle.fontNormalBold}>Tin</Text>,
                     iconName: 'ios-albums',
                     iconBackground: '#4770f5',
                     iconColor: '#fff',
                     rightComponent: null
                 },
                 {
-                    title: 'SMS',
+                    title: <Text style={RootStyle.fontNormalBold}>SMS</Text>,
                     iconName: 'ios-chatbubble',
                     iconBackground: '#9345ed',
                     iconColor: '#fff',
                     rightComponent: null
                 },
                 {
-                    title: 'Cập nhật',
+                    title: <Text style={RootStyle.fontNormalBold}>Cập nhật</Text>,
                     iconName: 'ios-download',
                     iconBackground: '#2cb7de',
                     iconColor: '#fff',
@@ -111,21 +112,21 @@ const ProfileScreen = ({navigation}) => {
             title: 'Tài khoản',
             items: [
                 {
-                    title: 'Cài đặt',
+                    title: <Text style={RootStyle.fontNormalBold}>Cài đặt</Text>,
                     iconName: 'ios-settings',
-                    iconBackground: 'rgb(0, 153, 255)',
+                    iconBackground: 'rgb(0, 132, 255)',
                     iconColor: '#fff',
                     rightComponent: null
                 },
                 {
-                    title: 'Báo lỗi',
+                    title: <Text style={RootStyle.fontNormalBold}>Báo lỗi</Text>,
                     iconName: 'ios-bug',
                     iconBackground: '#fa4848',
                     iconColor: '#fff',
                     rightComponent: null
                 },
                 {
-                    title: 'Đăng xuất',
+                    title: <TouchableOpacity onPress={() => navigation.navigate('Login')}><Text style={RootStyle.fontNormalBold}>Đăng xuất</Text></TouchableOpacity>,
                     iconName: 'log-out',
                     iconBackground: '#333',
                     iconColor: '#fff',
@@ -142,12 +143,12 @@ const ProfileScreen = ({navigation}) => {
                     {
                         section.items.map((item, i) => {
                             return (
-                                <View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20}}>
+                                <View style={{flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10}}>
                                     <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                         <View style={[RootStyle.borderIcon, {backgroundColor: item.iconBackground}]}>
                                             <Icon color={item.iconColor} name={item.iconName} size={18} />
                                         </View>
-                                        <Text style={RootStyle.fontNormalBold}>{item.title}</Text>
+                                        {item.title}
                                     </View>
                                     <View>
                                         {item.rightComponent}

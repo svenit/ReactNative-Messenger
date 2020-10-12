@@ -90,5 +90,20 @@ export default StyleSheet.create({
     },
     fontNormalBold: {
         fontWeight: '500'
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 25,
+        padding: 20,
+    },
+    centerView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    bottomView: {
+        flex: 1,
+        justifyContent: 'flex-end',
     }
 });

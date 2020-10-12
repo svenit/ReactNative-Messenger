@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, FlatList, ActivityIndicator, KeyboardAvoidingView, Platform, Alert } from 'react-native';
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, FlatList, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
 import AvatarDot from '../components/AvatarDot';
 import ConversationStyle from '../styles/Conversation.style';
 import RootStyle from '../styles/Root.style';
@@ -13,7 +13,7 @@ import MessageBubble from '../components/MessageBubble';
 import Validator from '../utils/Validator';
 
 const Conversation = ({route, navigation}) => {
-    const user = { id, fullName, avatar, isOnline } = route.params;
+    const user = { id, fullName, avatar, isOnline} = route.params;
     const auth = useSelector(state => state.auth);
     const [conversation, setConversation] = useState({});
     const [messages, setMessages] = useState([]);
@@ -23,7 +23,7 @@ const Conversation = ({route, navigation}) => {
     const [singleton, setSingleton] = useState(false);
     const messageInput = useRef(null);
     const flatList = useRef(null);
-    const themeColor = conversation ? conversation.theme_color : 'rgb(0, 153, 255)';
+    const themeColor = conversation ? conversation.theme_color : 'rgb(0, 132, 255)';
     navigation.setOptions({
         headerTitle: <HeaderTitle {...user} />,
         headerRight: () => <HeaderRight conversation={conversation} user={user} navigation={navigation} themeColor={themeColor} />,
@@ -75,7 +75,9 @@ const Conversation = ({route, navigation}) => {
             isSender: item.sender_id == auth.id,
             ...item
         };
-        return <MessageBubble {...item} />
+        if (auth.id != item.deleted_by) {
+            return <MessageBubble {...item} />
+        }
     }
     sendMessage = () => {
         let validator = Validator;
@@ -94,10 +96,13 @@ const Conversation = ({route, navigation}) => {
             sender_id: auth.id,
             receiver_id: user.id,
             body: messageText,
+            is_show: true,
+            type: 'text',
             created_at: time
         });
         MessengerHelper.updateUserConversation(auth.id, user.id, {
-            last_message: messageText
+            last_message: messageText,
+            is_show: true,
         });
         messageInput.current.clear();
         messageInput.current.focus();
@@ -109,6 +114,7 @@ const Conversation = ({route, navigation}) => {
         return (
             <View style={{flex: 9.3, paddingTop: 10, paddingBottom: 10}}>
                 <FlatList
+                    showsVerticalScrollIndicator={false}
                     ref={flatList}
                     onContentSizeChange={()=> flatList.current.scrollToEnd()}
                     data={messages}
@@ -121,7 +127,7 @@ const Conversation = ({route, navigation}) => {
     return (
         <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'height'} style={{flex: 1}}>
             <SafeAreaView style={RootStyle.container}>
-                <View style={{flex: 1, background: 'red'}}>
+                <View style={{flex: 1}}>
                     <View style={{flex: 9.3}}>
                         {renderConversationMessages()}
                     </View>
@@ -130,7 +136,7 @@ const Conversation = ({route, navigation}) => {
                             <Icon color={themeColor} name="ios-add-circle" size={25}/>
                             <Icon color={themeColor} name="ios-navigate-circle" size={25}/>
                             <Icon color={themeColor} name="mic-sharp" size={25}/>
-                            <Icon  color={themeColor} name="ios-image" size={25}/>
+                            <Icon color={themeColor} name="ios-image" size={25}/>
                         </View>
                         <View style={{flex: .8, position: 'relative'}}>
                             <TextInput ref={messageInput} onSubmitEditing={() => sendMessage()} onChangeText={(text) => setMessageText(text)} onFocus={() => setShowSendButton(true)} onBlur={() => setShowSendButton(false)} placeholder="Nhập tin nhắn..." style={ConversationStyle.chatInput} />

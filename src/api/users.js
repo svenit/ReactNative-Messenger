@@ -6,7 +6,7 @@ export default [
         fullName: 'Lê Quang Vỹ',
         avatar: require('../assets/images/avatar/1.jpeg'),
         isOnline: true,
-        hasStories: true,
+        hasStories: false,
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export default [
         fullName: 'Lê Thị Phương',
         avatar: require('../assets/images/avatar/2.jpeg'),
         isOnline: true,
-        hasStories: true,
+        hasStories: false,
     },
     {
         id: 3,
@@ -33,7 +33,7 @@ export default [
         fullName: 'Tester',
         avatar: require('../assets/images/avatar/4.jpeg'),
         isOnline: true,
-        hasStories: true,
+        hasStories: false,
     },
     {
         id: 5,
@@ -69,7 +69,7 @@ export default [
         fullName: 'Senna',
         avatar: require('../assets/images/avatar/8.jpeg'),
         isOnline: true,
-        hasStories: true,
+        hasStories: false,
     },
     {
         id: 9,

@@ -9,14 +9,16 @@ import MessengerHelper from '../utils/Messenger';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ChatStyle from '../styles/Chat.style';
 
-const themeColor =  'rgb(0, 153, 255)';
+const themeColor =  'rgb(0, 132, 255)';
 
 const Friends = ({navigation, showHeader = true}) => {
     const [friends, setFriends] = useState([]);
+    const [cloneFriends, setCloneFriends] = useState([]);
     const accounts = useSelector(state => state.account);
     const auth = useSelector(state => state.auth);
     useEffect(() => {
         let friends = accounts.filter((account, key) => account.id != auth.id);
+        setCloneFriends(friends);
         setFriends(friends);
     }, []);
     showHeader ? navigation.setOptions({
@@ -29,14 +31,21 @@ const Friends = ({navigation, showHeader = true}) => {
     const renderFriends = ({item}) => {
         return (
             <TouchableOpacity onPress={() => redirectToConversation(item)} style={FriendsStyle.listFriends}>
-                <AvatarDot image={item.avatar} status="active"/>
+                <AvatarDot image={item.avatar} status={item.isOnline ? 'active' : 'deactive'} />
                 <Text style={FriendsStyle.listFriendsName}>{item.fullName}</Text>
             </TouchableOpacity>
         )
     }
+    const searchFriends = (text) => {
+        if (text) {
+            let searchFriends = friends.filter(friend => friend.fullName.toLowerCase().indexOf(text.toLowerCase()) != -1);
+            return setFriends(searchFriends);
+        }
+        setFriends(cloneFriends);
+    }
     return (
         <SafeAreaView style={RootStyle.container}>
-            <SearchBox />
+            <SearchBox onChangeText={(text) => searchFriends(text)} />
             <FlatList
                 data={friends}
                 renderItem={renderFriends}

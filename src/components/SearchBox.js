@@ -5,11 +5,11 @@ import RootStyle from '../styles/Root.style';
 
 const screen = Dimensions.get('screen');
 
-const SearchBox = () => {
+const SearchBox = (props) => {
     return (
         <View style={style.header}>
             <Icon style={style.headerIcon} name="search-outline" size={20} color="#ccc"/>
-            <TextInput style={[RootStyle.input, style.headerSearchBox]} placeholder="Tìm kiếm" />
+            <TextInput onChangeText={(e) => props.onChangeText(e)} style={[RootStyle.input, style.headerSearchBox]} placeholder="Tìm kiếm" />
         </View>
     )
 }

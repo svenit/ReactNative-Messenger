@@ -1,10 +1,9 @@
 import React from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity} from 'react-native';
+import { SafeAreaView, TouchableOpacity} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import AvatarDot from './AvatarDot';
 import { useSelector } from 'react-redux';
 import MessengerHelper from '../utils/Messenger';
-import { auth } from 'firebase';
 
 const Stories = ({navigation}) => {
     const auth = useSelector(state => state.auth);

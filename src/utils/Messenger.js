@@ -15,11 +15,11 @@ const Messenger = {
                     if (!otherSnapshot.exists()) {
                         let date = new Date().getTime();
                         let conversation = {
-                            is_show: true,
+                            is_show: false,
                             last_message: '',
                             coversation_id: this.randomString(),
                             users: [senderId, otherId],
-                            theme_color: 'rgb(0, 153, 255)',
+                            theme_color: 'rgb(0, 132, 255)',
                             created_at: date,
                             updated_at: date,
                         };
@@ -31,21 +31,40 @@ const Messenger = {
             }
         });
     },
-    updateUserConversation(senderId, otherId, data) {
+    updateUserConversation(senderId, otherId, data, onlyActor = false) {
         let time = new Date().getTime();
-        let attributes = { last_message, theme_color } = data;
+        let attributes = { last_message, theme_color, is_show} = data;
         let dataUpdate = {
-            updated_at: time
+            updated_at: time,
+            is_show: true,
         }
         for (let attribute of Object.keys(attributes)) {
-            if (attributes[attribute]) {
-                dataUpdate[attribute] = attributes[attribute];
-            }
+            dataUpdate[attribute] = attributes[attribute];
         }
         let senderNode = `${firebaseNodes.USERS}/${senderId}/conversations/${otherId}`;
         let otherNode = `${firebaseNodes.USERS}/${otherId}/conversations/${senderId}`;
         FirebaseService.node(senderNode).update(dataUpdate);
+        if (onlyActor) {
+            return;
+        }
         FirebaseService.node(otherNode).update(dataUpdate);
+    },
+    deleteConversation(conversationId, senderId, otherId) {
+        this.updateUserConversation(senderId, otherId, {
+            is_show: false
+        }, true);
+        FirebaseService.node(`${firebaseNodes.CONVERSATIONS}/${conversationId}`).ref().once('value', snapshot => {
+            snapshot.forEach(function(child) {
+                if (child.val().deleted_by) {
+                    child.ref.remove();
+                }
+                else {
+                    child.ref.update({
+                        deleted_by: senderId
+                    });
+                }
+            });
+        });
     },
     randomString() {
         return Math.random().toString(36).substring(2);
