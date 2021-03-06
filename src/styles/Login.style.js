@@ -30,5 +30,5 @@ export default StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
         fontWeight: 'bold'
-    }
+    }P
 });
